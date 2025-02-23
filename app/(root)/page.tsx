@@ -1,8 +1,9 @@
 import Hero from '@/components/Hero';
 import Games from '@/components/Games';
 import React from 'react'
+async function page() {
 
-function page() {
+
   return (
     <>
       {/* Hero Section */}
@@ -10,8 +11,6 @@ function page() {
       {/* Games In Dynamic Arena */}
       <Games/>
       {/* Sponsers */}
-
-      {/* Footer */}
     </>
   )
 }

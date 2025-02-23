@@ -14,29 +14,8 @@ const config: Config = {
     			xs: '475px'
     		},
     		colors: {
-    			color: {
-    				'1': '#AC6AFF',
-    				'2': '#FFC876',
-    				'3': '#FF776F',
-    				'4': '#7ADB78',
-    				'5': '#858DFF',
-    				'6': '#FF98E2'
-    			},
-				n: {
-					1: "#FFFFFF",
-					2: "#CAC6DD",
-					3: "#ADA8C3",
-					4: "#757185",
-					5: "#3F3A52",
-					6: "#252134",
-					7: "#15131D",
-					8: "#0E0C15",
-					9: "#474060",
-					10: "#43435C",
-					11: "#1B1B2E",
-					12: "#2E2A41",
-					13: "#6C7275",
-				  },
+    			gold: '#fbb02d',
+    			cyberBlack: '#121212',
     			primary: {
     				'100': '#FFE8F0',
     				DEFAULT: 'hsl(var(--primary))',
@@ -87,6 +66,16 @@ const config: Config = {
     				'3': 'hsl(var(--chart-3))',
     				'4': 'hsl(var(--chart-4))',
     				'5': 'hsl(var(--chart-5))'
+    			},
+    			sidebar: {
+    				DEFAULT: 'hsl(var(--sidebar-background))',
+    				foreground: 'hsl(var(--sidebar-foreground))',
+    				primary: 'hsl(var(--sidebar-primary))',
+    				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+    				accent: 'hsl(var(--sidebar-accent))',
+    				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+    				border: 'hsl(var(--sidebar-border))',
+    				ring: 'hsl(var(--sidebar-ring))'
     			}
     		},
     		fontFamily: {
