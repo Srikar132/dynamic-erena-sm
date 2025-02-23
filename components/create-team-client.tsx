@@ -29,8 +29,8 @@ function TeamClient({ availablePlayers }: { availablePlayers: Player[] }) {
   };
 
   const handleSubmit = async (formData: FormData) => {
-    setIsLoading(true);
     try {
+      setIsLoading(true);
       const data = {
         teamName: formData.get("teamName"),
         logo: formData.get("logo"),
@@ -43,12 +43,12 @@ function TeamClient({ availablePlayers }: { availablePlayers: Player[] }) {
 
       const result = await createTeam(formData);
 
-      if(result.STATUS === "SUCCESS") {
+      if(result.status === "SUCCESS") {
           toast({
             title: "Sucess",
             description: "Team crated Success fully",
           })
-          router.push("/")
+          router.push(`/team/${result.result?.teamId}`);
       }
 
     } catch (error) {
@@ -65,7 +65,7 @@ function TeamClient({ availablePlayers }: { availablePlayers: Player[] }) {
 
       toast({
         title: "Error",
-        description: "An unexpected error has occurred",
+        description: (error as any)?.message,
         variant: "destructive",
       });
     } finally {
@@ -132,7 +132,7 @@ function TeamClient({ availablePlayers }: { availablePlayers: Player[] }) {
             <Users className="w-5 h-5" />
             Team Players
           </label>
-          {[0, 1, 2, 3].map((_, i) => (
+          {[0, 1, 2].map((_, i) => (
             <div className="flex gap-4" key={_}>
               <select
                 name="players"

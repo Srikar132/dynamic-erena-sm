@@ -1,6 +1,7 @@
 import { auth } from '@/auth'
 import TeamClient from '@/components/create-team-client';
 import { client } from '@/sanity/lib/client';
+import { Player } from '@/sanity/types';
 import { redirect } from 'next/navigation';
 import React from 'react'
 
@@ -18,6 +19,7 @@ async function page() {
         }
     `);
 
+    
   return (
     <div className='mt-[5.75rem] min-h-screen z-50 bg-black/30 flex items-center justify-center'>
         <div className="bg-white rounded-lg  shadow-lg flex flex-col gap-5 text-black w-full h-full  max-w-3xl p-10 py-12 lg:max-h-[90%]">
@@ -29,7 +31,7 @@ async function page() {
             </div>
 
             {/* CLIENT FORM */}
-            <TeamClient availablePlayers={players}/>
+            <TeamClient availablePlayers={players.filter((player : Player) => player?._id !== session.player?._id )}/>
         </div>
     </div>
   )

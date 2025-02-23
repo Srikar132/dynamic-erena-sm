@@ -106,12 +106,7 @@ export type Player = {
   name?: string;
   email?: string;
   profile?: string;
-  currentTeam?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "team";
-  };
+  currentTeam?: Team | undefined;
   isAdmin?: boolean;
 };
 

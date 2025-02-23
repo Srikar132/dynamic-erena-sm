@@ -12,6 +12,10 @@ export async function middleware(req: NextRequest) {
   if (token.player?.isAdmin) {
     return NextResponse.redirect(new URL("/dashboard", req.url));
   }
+  
+  if(!token.player?.currentTeam) {
+    return NextResponse.redirect(new URL("/team/create", req.url));
+  }
 
   return NextResponse.next(); 
 }
