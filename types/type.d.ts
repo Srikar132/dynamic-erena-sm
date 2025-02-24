@@ -31,3 +31,10 @@ declare interface LeaderBoardRanks {
     points : number;
     wins : number
 }
+
+declare interface FilterOptions {
+  game: string[];
+  status: string[];
+  prizePool: {min: number; max: number};
+  entryFee: {min: number; max: number}
+}

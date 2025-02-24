@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { tournamentData } from "../../../utils/index";
 import { Tournament } from "@/sanity/types";
-import { FilterOptions } from "@/sanity/types";
+import { FilterOptions } from "@/types/type";
+//haa vintunna nannaa
 
 import {
   CalendarDays,
