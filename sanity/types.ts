@@ -97,6 +97,13 @@ export type Tournament = {
   prizePool?: number;
 };
 
+export type FilterOptions = {
+  status: string[];
+  game: string[];
+  prizePool: {min: number;max: number};
+  entryFee: {min: number;max: number};
+}
+
 export type Player = {
   _id: string;
   _type: "player";

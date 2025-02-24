@@ -14,6 +14,7 @@ export const tournament = {
         name: 'game',
         title: 'Game',
         type: 'string',
+        enum: ["free-fire","Pubg","chess"],
         validation: (Rule :Rule)=> Rule.required()
       },
       {
