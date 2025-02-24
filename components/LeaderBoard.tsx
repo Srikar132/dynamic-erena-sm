@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { LeaderBoardRanks } from '@/types/type';
 
-const TableComponent = ({ items }: { items: LeaderBoardRanks[] }) => {
+const TableComponent = ({ items , className }: { items: LeaderBoardRanks[] , className? : string }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const totalPages = Math.ceil(items.length / itemsPerPage);

@@ -1,39 +1,17 @@
 import StatCard from '@/components/dashboard/StatCard'
 import { Button } from '@/components/ui/button'
-import { Calendar, CheckCircle, DollarSign, FolderOpen, Gamepad, Medal, Settings, Tv2, Users } from 'lucide-react'
+import { Calendar, CheckCircle, DollarSign, FolderOpen, Gamepad, Medal, Plus, Settings, Tv2, Users } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
+import LeaderBoard from "@/components/LeaderBoard"
+import { leaderboardRanks, tournamentDummyData } from '@/lib/utils'
+import Link from 'next/link'
+import { Tournament } from '@/sanity/types'
+import { Card } from '@/components/ui/card'
+import TournamentCard from '@/components/dashboard/Tournament1'
 
 function page() {
   return (
-    <div className="flex flex-col p-2 sm:p-5 md:p-10 lg:p-14">
-      <nav className='w-full  h-16  flex items-center justify-center'>
-        <div className="w-full h-full flex items-center justify-between gap-x-5">
-            <div className="flex items-center gap-x-2 h-full">
-              <Image
-                className='invert'
-                src={"/logo.png"}
-                height={50}
-                width={50}
-                alt='DA'
-              />
-
-              <span className='font-bold uppercase text-xl'> <span className="text-3xl">D</span>ynammic <span className="text-3xl">A</span>reana</span>
-            </div>
-
-
-            <div className="flex items-center gap-x-2  h-full">
-              <Button className='bg-gray-300 hover:bg-gray-200 rounded-full text-black shadow-none text-xl'>Team switch</Button>
-
-              <Button className='bg-white-100 rounded-full shadow-none text-black hover:bg-white'>
-                <Settings size={30}/>
-              </Button>
-
-              
-            </div>
-        </div>
-      </nav>
-
       <main className='border h-full py-10 '>
 
         <div className="stat_card_container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
@@ -68,10 +46,34 @@ function page() {
             />
         </div>
 
+        <div className="grid grid-cols-1 lg:grid-cols-4 p-4 gap-5">
+
+          <div className=" col-span-2 gap-y-5  flex flex-col max-w-8xl">
+            <span className='font-bold uppercase text-xl'> <span className="text-3xl">L</span>eaderboard</span>
+              
+              <LeaderBoard items={leaderboardRanks}/>
+          </div>
+
+          <div className=" col-span-2 gap-y-5  flex flex-col max-w-8xl">
+
+            <div className="w-full flex items-center justify-between">
+              <span className='font-bold uppercase text-xl'> <span className="text-3xl">T</span>ournaments</span>
+
+              <Link href={"/dashboard/tournament"}>
+                  <Plus size={30}/>
+              </Link>
+            </div>
+              
+            {tournamentDummyData.map((tournament : Tournament , i : number) => (
+              <TournamentCard tournament={tournament}/>
+            ))}
+              
+          </div>
+
+        </div>
         
 
       </main>
-    </div>
   )
 }
 

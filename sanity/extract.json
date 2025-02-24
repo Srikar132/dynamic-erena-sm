@@ -400,7 +400,21 @@
       "game": {
         "type": "objectAttribute",
         "value": {
-          "type": "string"
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "freefire"
+            },
+            {
+              "type": "string",
+              "value": "bgmi"
+            },
+            {
+              "type": "string",
+              "value": "chess"
+            }
+          ]
         },
         "optional": true
       },

@@ -14,7 +14,14 @@ export const tournament = {
         name: 'game',
         title: 'Game',
         type: 'string',
-        validation: (Rule :Rule)=> Rule.required()
+        validation: (Rule :Rule)=> Rule.required(),
+        options: {
+          list: [
+            "freefire",
+            "bgmi",
+            "chess"
+          ]
+        },
       },
       {
         name: 'entryFee',

@@ -81,7 +81,7 @@ export type Tournament = {
   _updatedAt: string;
   _rev: string;
   title?: string;
-  game?: string;
+  game?: "freefire" | "bgmi" | "chess";
   entryFee?: number;
   startDate?: string;
   registrationDeadline?: string;
@@ -106,7 +106,12 @@ export type Player = {
   name?: string;
   email?: string;
   profile?: string;
-  currentTeam?: Team | undefined;
+  currentTeam?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "team";
+  };
   isAdmin?: boolean;
 };
 
