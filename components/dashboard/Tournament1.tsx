@@ -1,57 +1,121 @@
-import { Tournament } from "@/sanity/types";
-import { Calendar, Trophy } from "lucide-react";
+
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
+import formatDate from "date-fns/format";
+import {Calendar, DollarSign, Gamepad, Trophy, Users} from "lucide-react";
+import { gameImages , statusColors  } from "@/lib/utils";
+import type { GameType , Status} from "@/lib/utils";
+import { Button } from "../ui/button";
+const images = [
+    "https://wallpaperaccess.com/full/6163542.jpg",
+    "https://wallpaperaccess.com/full/1885360.jpg",
+    "https://wallpaperaccess.com/thumb/3289425.jpg",
+]
 
-type GameType = 'bgmi' | 'freefire' | 'chess';
-const gameImages: Record<GameType, string> = {
-  bgmi: "https://wallpaperaccess.com/full/6163542.jpg",
-  freefire: "https://wallpaperaccess.com/full/1089125.jpg",
-  chess: "https://wallpaperaccess.com/thumb/3289425.jpg",
+
+
+
+const TournamentCard = ({ tournament } : { tournament : any}) => {
+    return (
+        <Link href={`/dashboard/tournament/${tournament._id}`}>
+            <div className="bg-zinc-900 border border-zinc-800 hover:border-primary_green transition-all duration-300 rounded-xl overflow-hidden shadow-lg hover:shadow-green-900/30 flex flex-col h-full">
+                {/* Image container with overlay gradient */}
+                <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                        src={gameImages[tournament.game! as GameType]}
+                        width={500}
+                        height={400}
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                        alt={tournament.title || 'Tournament'}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+
+ 
+                    {tournament.status && (
+                        <div className={`absolute text-xs top-3 right-3 px-3 py-1 rounded-full bg-black/50 backdrop-blur-sm ${statusColors[tournament.status as Status]}`}>
+                            {tournament.status.replace('-', ' ')}
+                        </div>
+                    )}
+
+                    <div className="absolute bottom-3 left-3 flex items-center gap-x-2 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full">
+                        <Trophy size={16} className="text-primary_green"/>
+                        <span className="text-lg font-bold text-white">
+              ${tournament.prizePool!}
+            </span>
+                    </div>
+                </div>
+
+                
+                <div className="flex-1 p-4 flex flex-col">
+                    <h3 className="text-xl font-bold text-white mb-2 line-clamp-1">{tournament.title}</h3>
+
+                    <div className="grid grid-cols-2 gap-3 mt-2">
+                        <InfoCard
+                            Icon={Gamepad}
+                            title="Game"
+                            description={tournament.game as string}
+                        />
+                        <InfoCard
+                            Icon={DollarSign}
+                            title="Entry Fee"
+                            description={`${tournament.entryFee} Rs`}
+                        />
+                        <InfoCard
+                            Icon={Calendar}
+                            title="Start Date"
+                            description={formatDate(new Date(tournament.startDate!), 'MMM d, h:mm a')}
+                        />
+                        <InfoCard
+                            Icon={Users}
+                            title="Teams"
+                            description={`${tournament.registeredTeams?.length || 0}`}
+                        />
+                    </div>
+                    
+                    <div className="mt-3 p-2">
+                        <div className="relative flex items-center gap-x-2">
+                            <ul className="relative flex tracking-tight">
+                                {images.map((url , index) => (
+                                    <li>
+                                        <img
+                                           className="rounded-full object-cover w-5 h-5"
+                                            src={url}
+                                            alt="url"
+                                        />
+                                    </li>
+                                ))}
+                            </ul>
+                            <span className="text-sm font-semibold line-clamp-1 text-white truncate">+ {tournament.registeredTeams?.length} participents</span>
+                        </div>
+                    </div>
+
+                    <div className="w-full  flex items-center justify-end">
+                        <Button className="hover:underline text-black-300 hover:text-white font-semibold uppercase leading-3 tracking-wider">view</Button>
+                    </div>
+
+                </div>
+            </div>
+        </Link>
+    );
 };
-const statusColors = {
-  "registration-open": 'text-green-800 ',
-  "in-progress": "text-yellow-400",
-  "completed": "text-red-400",
-  "registration-closed" : "text-orange-500 ",
-  "upcoming" : "text-green-800 "
-};
 
-const TournamentCard = ({ tournament } : { tournament : Tournament}) => {
-
-  return (
-    <Link href={`/dashboard/tournament/${tournament._id}`} className="relative bg-white  shadow-sm  transform transition-all cursor-pointer group border-2 border-transparent hover:scale-105 hover:border-blue-500/30 overflow-hidden flex w-full gap-x-10 ">
-      
-
-      <div className="relative overflow-hidden w-[45%] bg-black/30 flex items-center justify-center  h-full">
-        <img src={gameImages[tournament.game as GameType]} className="h-28 w-full object-cover opacity-10" alt="LOG" />
-        <span className="text-white absolute flex items-center justify-center inset-0 font-black text-3xl uppercase tracking-wider">{tournament.game}</span>
-      </div>
-
-      
-      <div className="mt-6 space-y-4">
-        <h2 className="text-2xl uppercase font-bold text-center ">
-          {tournament.title}
-        </h2>
-
-        
-
-        
-        <div className="flex items-center justify-center space-x-2">
-          <span className={`${statusColors[tournament?.status!]} flex items-center w-full p-2 rounded-full` }>
-            <span className="w-2 h-2 bg-current rounded-full animate-pulse mr-2" />
-            {tournament?.status?.replace(/-/ , ' ').toLocaleUpperCase()}
-          </span>
+const InfoCard = ({
+                      Icon,
+                      title,
+                      description,
+                  }: {
+    Icon: any;
+    title: string;
+    description: string;
+}) => (
+    <div className="bg-zinc-800/50 hover:bg-zinc-800 rounded-lg p-4 flex flex-col">
+        <div className="flex items-center gap-x-2 mb-1">
+            <Icon size={14} className="text-primary_green" />
+            <span className="text-xs font-medium text-zinc-400">{title}</span>
         </div>
-
-
-      </div>
-
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-16 h-16 bg-blue-600/10 blur-3xl -z-10" />
-      <div className="absolute bottom-0 left-0 w-16 h-16 bg-purple-600/10 blur-3xl -z-10" />
-    </Link>
-  );
-};
+        <span className="text-sm font-semibold text-white truncate">{description}</span>
+    </div>
+);
 
 export default TournamentCard;

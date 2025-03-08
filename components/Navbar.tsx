@@ -5,13 +5,12 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Button } from './ui/button';
-import MenuSvg from "@/assets/svg/MenuSvg";
 import gsap from "gsap";
 import { useGSAP } from '@gsap/react';
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { usePathname } from "next/navigation"
 import { LogOut, Menu, X } from "lucide-react";
-import { urlFor } from "@/sanity/lib/image";
+
 
   
 function Navbar() {
@@ -22,6 +21,9 @@ function Navbar() {
 
 
     useGSAP(() => {
+
+
+
         if (openNavigation) {
             gsap.from("#header", {
                 y: -100,
@@ -124,26 +126,16 @@ function Navbar() {
                 {
                     session ? (
                         <div className="max-lg:hidden  flex items-center  gap-5 ">
-                            <Link href={`/profile/${session?.player?._id}`}>
+                            <Link href={`/profile/${session?.user?.id}`}>
                                 <Avatar className="border border-white"> 
-                                    {session?.player?.profile ? (
+                                    {session?.user?.image ? (
                                         <AvatarImage src={session.player?.profile as string}/>
                                     ) : (
                                         <AvatarImage src="https://tse4.mm.bing.net/th?id=OIP.wEsBe2udHBieFeZVmus8qAHaHk&pid=Api&P=0&h=180"/>
                                     )}
                                 </Avatar>
                             </Link>
-                            {session?.player?.currentTeam?._id && (
-                                <Link href={`/team/${session?.player?.currentTeam?._id}`}>
-                                    <Avatar className="border border-white"> 
-                                        {session?.player?.currentTeam?.logo ? (
-                                            <AvatarImage src={urlFor(session?.player?.currentTeam?.logo).url()}/>
-                                        ) : (
-                                            <AvatarImage src="https://tse4.mm.bing.net/th?id=OIP.wEsBe2udHBieFeZVmus8qAHaHk&pid=Api&P=0&h=180"/>
-                                        )}
-                                    </Avatar>
-                                </Link>
-                            )}
+
 
                             <Button onClick={handleSignOut} className="rounded-full">
                                 <LogOut/> logout

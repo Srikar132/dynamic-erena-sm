@@ -1,6 +1,8 @@
-import { Tournament } from "@/sanity/types"
+import { Trophy } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { Gamepad } from 'lucide-react';
+import { GrAchievement, GrUser } from 'react-icons/gr';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -118,7 +120,7 @@ export const tournaments = [
   // },
 ];
 
-export const tournamentDummyData: Tournament[] = [
+export const tournamentDummyData: any = [
   {
     _id: "t1",
     _type: "tournament",
@@ -216,4 +218,63 @@ export const tournamentDummyData: Tournament[] = [
     _updatedAt: "2024-07-20T21:00:00Z",
     _rev: ""
   }
+];
+
+
+export type GameType = 'bgmi' | 'freefire' | 'chess';
+export const gameImages: Record<GameType, string> = {
+    bgmi: "https://wallpaperaccess.com/full/7447747.jpg",
+    freefire: "https://wallpaperaccess.com/full/1885360.jpg",
+    chess: "https://wallpaperaccess.com/thumb/3289425.jpg",
+};
+
+export type Status = "registration-open" | "in-progress" | "completed" | "registration-closed" | "upcoming"
+export const statusColors : Record<Status , string> = {
+    "registration-open": 'text-white',
+    "in-progress": "bg-yellow-400 text-primary_bg",
+    "completed": "bg-red-400 text-primary_bg",
+    "registration-closed": "bg-orange-500 text-primary_bg",
+    "upcoming": "text-white"
+};
+
+export type StatType = {
+  title : string;
+  value : number;
+  Icon : any,
+  trend : {
+    value : string;
+    isPositive : boolean
+  };
+  description : string;
+}
+
+export const tournamentStats : StatType[]  = [
+  {
+    title: "Total Tournaments",
+    value: 25,
+    Icon: Trophy, 
+    trend: {value : "+10%" , isPositive : true},
+    description: "Total tournaments hosted this month",
+  },
+  {
+    title: "Active Tournaments",
+    value: 5,
+    Icon: Gamepad,
+    trend: { value : "+5%" , isPositive : false},
+    description: "Ongoing tournaments currently in progress",
+  },
+  {
+    title: "Registered Players",
+    value: 1200,
+    Icon: GrUser,
+    trend: {value : "+15%" , isPositive : true},
+    description: "Total players registered across all tournaments",
+  },
+  {
+    title: "Upcoming Tournaments",
+    value: 8,
+    Icon: GrAchievement,
+    trend: {value : "-2%" , isPositive : false},
+    description: "Tournaments scheduled for the upcoming weeks",
+  },
 ];

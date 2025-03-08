@@ -1,7 +1,6 @@
 import { auth } from '@/auth'
 import TeamClient from '@/components/create-team-client';
-import { client } from '@/sanity/lib/client';
-import { Player } from '@/sanity/types';
+import { playerDummyData } from '@/constants';
 import { redirect } from 'next/navigation';
 import React from 'react'
 
@@ -10,14 +9,7 @@ async function page() {
 
     if(!session?.user) redirect("/login");
 
-    const players = await client.fetch(`
-        *[_type == "player" && !isAdmin && !defined(currentTeam)] {
-            _id,
-            name,
-            email,
-            profile,
-        }
-    `);
+    const players = playerDummyData;
 
     
   return (
@@ -31,7 +23,7 @@ async function page() {
             </div>
 
             {/* CLIENT FORM */}
-            <TeamClient availablePlayers={players.filter((player : Player) => player?._id !== session.player?._id )}/>
+            <TeamClient availablePlayers={players.filter((player : any) => player?._id !== session.player?._id )}/>
         </div>
     </div>
   )

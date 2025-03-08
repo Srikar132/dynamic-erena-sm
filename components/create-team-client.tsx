@@ -1,15 +1,13 @@
 "use client";
 
 import { useToast } from '@/hooks/use-toast';
-import { createTeam } from '@/lib/actions';
 import { teamCreateFormSchema } from '@/lib/validation';
-import { Player } from '@/sanity.types';
-import { Router, Sword, Trophy, Upload, Users } from 'lucide-react';
+import { Sword, Trophy, Upload, Users } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { ReactNode, useState } from 'react';
 import { z } from 'zod';
 
-function TeamClient({ availablePlayers }: { availablePlayers: Player[] }) {
+function TeamClient({ availablePlayers }: { availablePlayers: any}) {
   const { toast } = useToast();
   const router = useRouter();
   const [imagePreview, setImagePreview] = useState('');
@@ -41,7 +39,12 @@ function TeamClient({ availablePlayers }: { availablePlayers: Player[] }) {
       await teamCreateFormSchema.parseAsync(data);
 
 
-      const result = await createTeam(formData);
+      const result = {
+        status : '',
+        result : {
+          teamId : ''
+        }
+      }
 
       if(result.status === "SUCCESS") {
           toast({
@@ -145,8 +148,8 @@ function TeamClient({ availablePlayers }: { availablePlayers: Player[] }) {
               >
                 <option value="">Select player {i + 1}</option>
                 {availablePlayers
-                  .filter((player) => !selectedPlayers.includes(player._id) || selectedPlayers[i] === player._id)
-                  .map((player) => (
+                  .filter((player : any) => !selectedPlayers.includes(player._id) || selectedPlayers[i] === player._id)
+                  .map((player : any) => (
                     <option key={player._id} value={player._id}>
                       {player.name}
                     </option>

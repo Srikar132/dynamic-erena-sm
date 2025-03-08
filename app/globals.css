@@ -7,12 +7,16 @@
 
 
 
-/* body {
-  font-family: "Teko", serif;
-  font-optical-sizing: auto;
-  font-style: normal;
+/* Hide scrollbar but allow scrolling */
+::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }
- */
+
+html, body {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
 
 @layer base {
   :root {
@@ -90,6 +94,9 @@
   .flex-between {
     @apply flex justify-between items-center;
   }
+  .section_padding {
+    @apply py-5 px-3 md:px-5 lg:px-8
+  }
 
   .sub-heading {
     @apply font-medium text-[20px] text-white max-w-2xl text-center break-words;
@@ -100,11 +107,15 @@
   }
 
   .card_grid {
-    @apply grid md:grid-cols-3 sm:grid-cols-2 gap-5;
+    @apply grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 gap-5;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-between
   }
 
   .card_grid-sm {
-    @apply grid sm:grid-cols-2 gap-5;
+    @apply grid sm:grid-cols-2 md:grid-cols-3  gap-5;
   }
 
   .no-result {

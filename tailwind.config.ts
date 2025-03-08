@@ -14,7 +14,13 @@ const config: Config = {
     			xs: '475px'
     		},
     		colors: {
+
+				primary_bg : "#050505",
+				primary_green : "#39FF14",
+				primary_blue : " #0000FF",
+				primary_accent : "#222222",
     			gold: '#fbb02d',
+				border_green : "#88FF88",
     			cyberBlack: '#121212',
     			primary: {
     				'100': '#FFE8F0',
@@ -33,7 +39,7 @@ const config: Config = {
     			},
     			white: {
     				'100': '#F7F7F7',
-    				DEFAULT: '#FFFFFF'
+    				DEFAULT: '#E0E0E0'
     			},
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',
