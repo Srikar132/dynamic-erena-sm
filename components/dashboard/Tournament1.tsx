@@ -2,11 +2,13 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import formatDate from "date-fns/format";
+// import formatDate from "date-fns/format";
 import {Calendar, DollarSign, Gamepad, Trophy, Users} from "lucide-react";
 import { gameImages , statusColors  } from "@/lib/utils";
 import type { GameType , Status} from "@/lib/utils";
 import { Button } from "../ui/button";
+import { Tournament } from "@/types/type";
+
 const images = [
     "https://wallpaperaccess.com/full/6163542.jpg",
     "https://wallpaperaccess.com/full/1885360.jpg",
@@ -16,7 +18,7 @@ const images = [
 
 
 
-const TournamentCard = ({ tournament } : { tournament : any}) => {
+const TournamentCard = ({ tournament } : { tournament : Tournament}) => {
     return (
         <Link href={`/dashboard/tournament/${tournament._id}`}>
             <div className="bg-zinc-900 border border-zinc-800 hover:border-primary_green transition-all duration-300 rounded-xl overflow-hidden shadow-lg hover:shadow-green-900/30 flex flex-col h-full">
@@ -61,10 +63,11 @@ const TournamentCard = ({ tournament } : { tournament : any}) => {
                             title="Entry Fee"
                             description={`${tournament.entryFee} Rs`}
                         />
+                        {/* formatDate(new Date(tournament.startDate!), 'MMM d, h:mm a') */}
                         <InfoCard
                             Icon={Calendar}
                             title="Start Date"
-                            description={formatDate(new Date(tournament.startDate!), 'MMM d, h:mm a')}
+                            description={"May 24 , 07"}
                         />
                         <InfoCard
                             Icon={Users}

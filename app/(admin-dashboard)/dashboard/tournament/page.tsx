@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 
 import SearchInput from '@/components/dashboard/SearchInput';
+import { Tournament } from '@/types/type';
 
 
 
@@ -41,7 +42,7 @@ async function Tournament({searchParams} : {
 
       <div className={'my-10 '}>
         <ul className={'mt-5 card_grid-sm !gap-12'}>
-            {tournamentDummyData.map((tournament : any , index : number) => (
+            {tournamentDummyData.map((tournament : Tournament , index : number) => (
                 <TournamentCard key={index} tournament={tournament} />
             ))}
         </ul>

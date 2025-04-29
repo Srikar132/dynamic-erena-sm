@@ -111,7 +111,7 @@ html, body {
   }
 
   .flex-center {
-    @apply flex items-center justify-between
+    @apply flex items-center justify-center
   }
 
   .card_grid-sm {

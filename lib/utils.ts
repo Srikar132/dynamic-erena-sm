@@ -3,6 +3,7 @@ import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { Gamepad } from 'lucide-react';
 import { GrAchievement, GrUser } from 'react-icons/gr';
+import { Tournament } from '@/types/type';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -120,103 +121,45 @@ export const tournaments = [
   // },
 ];
 
-export const tournamentDummyData: any = [
+export const tournamentDummyData: Tournament[] = [
   {
-    _id: "t1",
-    _type: "tournament",
-    title: "BGMI Pro League Season 1",
-    game: "bgmi",
-    entryFee: 500,
-    startDate: "2024-03-15T14:00:00Z",
-    registrationDeadline: "2024-03-14T23:59:59Z",
-    status: "registration-open",
-    registeredTeams: [
-      { _ref: "team1", _type: "reference", _key: "key1" },
-      { _ref: "team2", _type: "reference", _key: "key2" },
-      { _ref: "team3", _type: "reference", _key: "key3" }
+    "_id": "t1",
+    "title": "BGMI Pro League Season 1",
+    "game": "bgmi",
+    "entryFee": 500,
+    "startDate": "2024-03-15T14:00:00Z",
+    "endDate": "2024-03-20T18:00:00Z",
+    "registrationDeadline": "2024-03-14T23:59:59Z",
+    "status": "registration-open",
+    "registeredTeams": [
+      { "_id": "123" }
     ],
-    maxTeams: 16,
-    prizePool: 50000,
-    _createdAt: "2024-03-15T14:00:00Z",
-    _updatedAt: "2024-03-15T14:00:00Z",
-    _rev: ""
-  },
-  {
-    _id: "t2",
-    _type: "tournament",
-    title: "Free Fire Battle Royale",
-    game: "freefire",
-    entryFee: 300,
-    startDate: "2024-04-10T18:00:00Z",
-    registrationDeadline: "2024-04-08T23:59:59Z",
-    status: "registration-open",
-    registeredTeams: [
-      { _ref: "team4", _type: "reference", _key: "key4" },
-      { _ref: "team5", _type: "reference", _key: "key5" }
-    ],
-    maxTeams: 12,
-    prizePool: 30000,
-    _createdAt: "2024-04-10T18:00:00Z",
-    _updatedAt: "2024-04-10T18:00:00Z",
-    _rev: ""
-  },
-  {
-    _id: "t3",
-    _type: "tournament",
-    title: "Chess Grand Masters",
-    game: "chess",
-    entryFee: 200,
-    startDate: "2024-05-05T12:00:00Z",
-    registrationDeadline: "2024-05-03T23:59:59Z",
-    status: "upcoming",
-    registeredTeams: [
-      { _ref: "player1", _type: "reference", _key: "key6" },
-      { _ref: "player2", _type: "reference", _key: "key7" }
-    ],
-    maxTeams: 10,
-    prizePool: 20000,
-    _createdAt: "2024-05-05T12:00:00Z",
-    _updatedAt: "2024-05-05T12:00:00Z",
-    _rev: ""
-  },
-  {
-    _id: "t4",
-    _type: "tournament",
-    title: "Valorant Champions League",
-    game: "freefire",
-    entryFee: 700,
-    startDate: "2024-06-15T19:00:00Z",
-    registrationDeadline: "2024-06-12T23:59:59Z",
-    status: "registration-closed",
-    registeredTeams: [
-      { _ref: "team6", _type: "reference", _key: "key8" },
-      { _ref: "team7", _type: "reference", _key: "key9" },
-      { _ref: "team8", _type: "reference", _key: "key10" }
-    ],
-    maxTeams: 20,
-    prizePool: 60000,
-    _createdAt: "2024-06-15T19:00:00Z",
-    _updatedAt: "2024-06-15T19:00:00Z",
-    _rev: ""
-  },
-  {
-    _id: "t5",
-    _type: "tournament",
-    title: "Call of Duty Mobile Warfare",
-    game: "bgmi",
-    entryFee: 400,
-    startDate: "2024-07-20T21:00:00Z",
-    registrationDeadline: "2024-07-18T23:59:59Z",
-    status: "registration-open",
-    registeredTeams: [
-      { _ref: "team9", _type: "reference", _key: "key11" },
-      { _ref: "team10", _type: "reference", _key: "key12" }
-    ],
-    maxTeams: 14,
-    prizePool: 45000,
-    _createdAt: "2024-07-20T21:00:00Z",
-    _updatedAt: "2024-07-20T21:00:00Z",
-    _rev: ""
+    "maxTeams": 16,
+    "prizePool": 50000,
+    "prizes": {
+      "1st": 25000,
+      "2nd": 15000,
+      "3rd": 10000
+    },
+    "platform": "Mobile",
+    "matchFormat": "Squads",
+    "mode": "TPP",
+    "serverRegion": "Asia",
+    "bracketType": "Single Elimination",
+    "rules": "- 🚫 No emulator players allowed\n- ⏰ All players must check-in 30 minutes before the match\n- ⚠️ Any form of cheating will result in disqualification\n- 📢 Players must join the tournament Discord server for updates",
+    "organizer": {
+      "name": "XYZ eSports",
+      "contact": "xyz@gmail.com",
+      "website": "https://xyz-esports.com"
+    },
+    "streaming": {
+      "isStreamed": true,
+      "platforms": ["YouTube", "Twitch"],
+      "link": "https://youtube.com/xyz-esports"
+    },
+    "pitch": "##  Welcome to the BGMI Pro League Season 1!\n\nJoin the **biggest** battleground where the **best teams** fight for glory and a **₹50,000 prize pool**! Get ready for intense matches, strategic gameplay, and a battle to claim the **championship title!**\n\nA tournament is a structured competition where individuals or teams compete against each other to determine a winner. It can be organized in various formats, such as single-elimination, double-elimination, round-robin, or league-based play. Tournaments are held in different fields, including sports, eSports, academics, and business, fostering competition, skill development, and teamwork.",
+    "_createdAt": "2024-03-15T14:00:00Z",
+    "_updatedAt": "2024-03-15T14:00:00Z"
   }
 ];
 
@@ -229,13 +172,15 @@ export const gameImages: Record<GameType, string> = {
 };
 
 export type Status = "registration-open" | "in-progress" | "completed" | "registration-closed" | "upcoming"
-export const statusColors : Record<Status , string> = {
-    "registration-open": 'text-white',
-    "in-progress": "bg-yellow-400 text-primary_bg",
-    "completed": "bg-red-400 text-primary_bg",
-    "registration-closed": "bg-orange-500 text-primary_bg",
-    "upcoming": "text-white"
+export const statusColors: Record<Status, string> = {
+  "registration-open": "bg-primary_green text-primary_bg",
+  "in-progress": "bg-blue-500 text-white",
+  "completed": "bg-gray-600 text-white",
+  "registration-closed": "bg-orange-600 text-white",
+  "upcoming": "bg-purple-500 text-white"
 };
+
+
 
 export type StatType = {
   title : string;

@@ -8,7 +8,7 @@ const StatCard = ({
   trend,
   description
 } : StatType) => (
-  <Card className="relative rounded-none border-none overflow-hidden bg-gradient-to-br from-primary_accent to-primary_bg p-6 group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+  <Card className="relative rounded-none border-none overflow-hidden bg-primary_accent  p-6 group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
    
     {/* <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary_green to-green-600 opacity-75 group-hover:opacity-100 transition-opacity" /> */}
     
